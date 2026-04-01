@@ -58,30 +58,30 @@ module.exports.updateListing = async(req,res) =>{
     res.redirect(`/listings/${id}`);
 }
 
-// module.exports.updateListing = async (req, res) => {
-//     let { id } = req.params;
+module.exports.updateListing = async (req, res) => {
+    let { id } = req.params;
 
-//     let listing = await Listing.findById(id);
+    let listing = await Listing.findById(id);
 
-//     delete req.body.listing.image;
+    delete req.body.listing.image;
 
-//     // Update other fields
-//     Object.assign(listing, req.body.listing);
+    // Update other fields
+    Object.assign(listing, req.body.listing);
 
-//     // If new image uploaded → replace
-//     if (req.file) {
-//         console.log("new image",req.file.path);
-//         listing.image = {
-//             url: req.file.path,
-//             filename: req.file.filename
-//         };
-//     } 
+    // If new image uploaded → replace
+    if (req.file) {
+        console.log("new image",req.file.path);
+        listing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    } 
 
-//     await listing.save();
+    await listing.save();
 
-//     req.flash("success", "Listing Updated!");
-//     res.redirect(`/listings/${id}`);
-// };
+    req.flash("success", "Listing Updated!");
+    res.redirect(`/listings/${id}`);
+};
 
 
 module.exports.destroyListing = async(req,res) =>{
