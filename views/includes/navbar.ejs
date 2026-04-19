@@ -13,8 +13,8 @@
   /* Search Bar Styles */
   .search-form {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap;
   }
 
   .search-inp {
@@ -22,8 +22,7 @@
     padding: 0.5rem 1rem;
     font-size: 0.95rem;
     border: 1px solid #ddd;
-    min-width: 150px;
-    flex: 1;
+    width: 220px;          /* ✅ Fixed width — no more stretching */
   }
 
   .search-inp:focus {
@@ -36,10 +35,13 @@
     background-color: #fe424d;
     color: #fff;
     border-radius: 25px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.2rem;
     border: none;
     font-weight: 500;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .btn-search:hover {
@@ -47,81 +49,83 @@
     color: #fff;
   }
 
-  .btn-search i {
-    margin-right: 0.4rem;
-  }
-
   /* Category Filter Bar */
   .category-bar {
     background-color: #fff;
     border-bottom: 1px solid #e5e5e5;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* hide scrollbar Firefox */
   }
 
-  .category-container {
+  .category-bar::-webkit-scrollbar {
+    display: none; /* hide scrollbar Chrome */
+  }
+
+  .category-wrapper {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    min-width: max-content;
     padding: 0 1rem;
-    min-width: min-content;
+    gap: 0.25rem;
   }
 
   .category-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    gap: 0.3rem;
+    padding: 0.5rem 1rem;
     border: 2px solid transparent;
-    border-radius: 20px;
+    border-radius: 12px;
     background-color: transparent;
-    color: #333;
-    font-size: 0.85rem;
+    color: #717171;
+    font-size: 0.78rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   .category-btn:hover {
-    border-color: #fe424d;
-    color: #fe424d;
+    border-color: #ddd;
+    color: #222;
   }
 
   .category-btn.active {
-    border-color: #fe424d;
-    color: #fe424d;
+    border-color: #222;
+    color: #222;
   }
 
   .category-btn i {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
-  /* Tax Toggle */
+  /* Tax Toggle — pinned to right, separated by border */
   .tax-toggle-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1.25rem;
     border-left: 1px solid #e5e5e5;
+    flex-shrink: 0;
+    background: #fff;
+    position: sticky;
+    right: 0;
   }
 
   .tax-toggle-container label {
     margin: 0;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 0.82rem;
+    font-weight: 600;
     cursor: pointer;
+    white-space: nowrap;
+    color: #222;
   }
 
-  .toggle-checkbox {
-    width: 2rem;
-    height: 1rem;
-    cursor: pointer;
-  }
-
-  /* Responsive adjustments */
+  /* Responsive */
   @media (max-width: 768px) {
     .search-form {
       width: 100%;
@@ -129,79 +133,45 @@
     }
 
     .search-inp {
-      min-width: 120px;
-      font-size: 0.9rem;
+      width: 100%;        /* full width only inside collapsed menu */
+      flex: 1;
     }
 
-    .btn-search {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .category-container {
-      padding: 0 0.5rem;
-      gap: 0.75rem;
-    }
-
-    .category-btn {
-      padding: 0.6rem 0.8rem;
-      font-size: 0.75rem;
-      gap: 0.3rem;
-    }
-
-    .category-btn i {
-      font-size: 1.2rem;
-    }
-
-    .tax-toggle-container {
-      padding: 0.5rem 0.75rem;
-      gap: 0.3rem;
-    }
-
-    .tax-toggle-container label {
-      font-size: 0.75rem;
+    .btn-search span {
+      display: inline;
     }
   }
 
   @media (max-width: 576px) {
-    .search-inp {
-      min-width: 100px;
-      padding: 0.4rem 0.8rem;
-    }
-
-    .btn-search {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.85rem;
-    }
-
     .btn-search span {
-      display: none;
-    }
-
-    .navbar-nav {
-      gap: 0.25rem;
+      display: none;   /* icon only on very small screens */
     }
   }
 </style>
 
-<!-- Main Navbar -->
+<!-- ✅ Main Navbar -->
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings">
       <i class="fa-solid fa-compass"></i>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- Explore link -->
       <div class="navbar-nav flex-grow-1">
         <a class="nav-link" href="/listings">Explore</a>
       </div>
 
-      <!-- Search Bar -->
-      <form class="navbar-nav search-form me-3">
-        <input class="search-inp" type="search" placeholder="Search destinations..." aria-label="Search Destinations">
+      <!-- ✅ FIX: changed from navbar-nav to d-flex so search stays inline -->
+      <form class="d-flex search-form me-3" action="/listings" method="GET">
+        <input class="search-inp form-control" type="search"
+          name="search" placeholder="Search destinations..."
+          aria-label="Search Destinations">
         <button class="btn btn-search" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
           <span>Search</span>
@@ -212,90 +182,99 @@
       <div class="navbar-nav">
         <a class="nav-link" href="/listings/new">Add Listing</a>
         <% if(!currUser) { %>
-        <a class="nav-link" href="/signup"><b>SignUp</b></a>
-        <a class="nav-link" href="/login"><b>Login</b></a>
+          <a class="nav-link" href="/signup"><b>SignUp</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
         <% } %>
         <% if(currUser) { %>
-        <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link" href="/logout">Logout</a>
         <% } %>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Category Filter Bar with Tax Toggle -->
+<!-- ✅ Category Filter Bar — outside navbar, so it never overlaps -->
 <div class="category-bar">
-  <div class="container-fluid">
-    <div class="d-flex align-items-center justify-content-between">
-      <!-- Categories Container -->
-      <div class="category-container flex-grow-1">
-        <button class="category-btn" data-category="trending">
-          <i class="fa-solid fa-fire"></i>
-          <span>Trending</span>
-        </button>
-        <button class="category-btn" data-category="rooms">
-          <i class="fa-solid fa-door-open"></i>
-          <span>Rooms</span>
-        </button>
-        <button class="category-btn" data-category="iconic">
-          <i class="fa-solid fa-landmark"></i>
-          <span>Iconic Cities</span>
-        </button>
-        <button class="category-btn" data-category="mountains">
-          <i class="fa-solid fa-mountain"></i>
-          <span>Mountains</span>
-        </button>
-        <button class="category-btn" data-category="pools">
-          <i class="fa-solid fa-water"></i>
-          <span>Amazing Pools</span>
-        </button>
-        <button class="category-btn" data-category="castles">
-          <i class="fa-solid fa-chess-rook"></i>
-          <span>Castles</span>
-        </button>
-        <button class="category-btn" data-category="farms">
-          <i class="fa-solid fa-tractor"></i>
-          <span>Farms</span>
-        </button>
-        <button class="category-btn" data-category="camping">
-          <i class="fa-solid fa-campground"></i>
-          <span>Camping</span>
-        </button>
-        <button class="category-btn" data-category="arctic">
-          <i class="fa-solid fa-snowflake"></i>
-          <span>Arctic</span>
-        </button>
-        <button class="category-btn" data-category="island">
-          <i class="fa-solid fa-island"></i>
-          <span>Island</span>
-        </button>
-      </div>
+  <div class="d-flex align-items-center">
+    <div class="category-wrapper flex-grow-1">
+      <button class="category-btn" data-category="trending">
+        <i class="fa-solid fa-fire"></i>
+        <span>Trending</span>
+      </button>
+      <button class="category-btn" data-category="rooms">
+        <i class="fa-solid fa-door-open"></i>
+        <span>Rooms</span>
+      </button>
+      <button class="category-btn" data-category="iconic">
+        <i class="fa-solid fa-city"></i>
+        <span>Iconic Cities</span>
+      </button>
+      <button class="category-btn" data-category="mountains">
+        <i class="fa-solid fa-mountain"></i>
+        <span>Mountains</span>
+      </button>
+      <button class="category-btn" data-category="pools">
+        <i class="fa-solid fa-swimming-pool"></i>
+        <span>Amazing Pools</span>
+      </button>
+      <button class="category-btn" data-category="castles">
+        <i class="fa-solid fa-chess-rook"></i>
+        <span>Castles</span>
+      </button>
+      <button class="category-btn" data-category="farms">
+        <i class="fa-solid fa-tractor"></i>
+        <span>Farms</span>
+      </button>
+      <button class="category-btn" data-category="camping">
+        <i class="fa-solid fa-campground"></i>
+        <span>Camping</span>
+      </button>
+      <button class="category-btn" data-category="arctic">
+        <i class="fa-solid fa-snowflake"></i>
+        <span>Arctic</span>
+      </button>
+      <!-- ✅ FIX: fa-island doesn't exist — replaced with fa-umbrella-beach -->
+      <button class="category-btn" data-category="island">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <span>Island</span>
+      </button>
+    </div>
 
-      <!-- Tax Toggle -->
-      <div class="tax-toggle-container">
-        <label for="taxToggle">Show total with taxes</label>
-        <input type="checkbox" id="taxToggle" class="toggle-checkbox">
+    <!-- Tax Toggle pinned to right -->
+    <div class="tax-toggle-container">
+      <label for="taxToggle">Display total after tax</label>
+      <div class="form-check form-switch mb-0">
+        <input class="form-check-input" type="checkbox" id="taxToggle" role="switch">
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Category filter functionality
+  // Category active state
   document.querySelectorAll('.category-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
-      // Add your filter logic here
-      console.log('Filter by:', this.dataset.category);
+      const category = this.dataset.category;
+      // Filter listings — update URL param and reload or use AJAX
+      const url = new URL(window.location.href);
+      url.searchParams.set('category', category);
+      window.location.href = url.toString();
     });
   });
 
-  // Tax toggle functionality
-  document.getElementById('taxToggle').addEventListener('change', function() {
-    // Add your tax display logic here
+  // Mark active category on page load from URL
+  const params = new URLSearchParams(window.location.search);
+  const activeCategory = params.get('category');
+  if (activeCategory) {
+    const activeBtn = document.querySelector(`.category-btn[data-category="${activeCategory}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+  }
+
+  // Tax toggle
+  document.getElementById('taxToggle').addEventListener('change', function () {
     console.log('Show tax:', this.checked);
+    // Add your price display logic here
   });
 </script>
-
-
