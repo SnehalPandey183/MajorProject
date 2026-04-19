@@ -133,14 +133,14 @@
 
 
 
- <% layout("/layouts/boilerplate") %>
+<% layout("/layouts/boilerplate") %>
 
 <style>
 /* CATEGORY BAR */
 .category-bar {
   position: sticky;
   top: 66px;
-  z-index: 998;
+  z-index: 10;  /* 🔥 LOWER than navbar */
   background: #fff;
   border-bottom: 1px solid #eee;
   padding: 10px 0;
@@ -249,7 +249,7 @@
 </div>
 
 <script>
-// ACTIVE CATEGORY
+// CATEGORY ACTIVE
 document.querySelectorAll(".category-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
