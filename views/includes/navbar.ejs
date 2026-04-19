@@ -1,254 +1,260 @@
 <style>
-  /* Navbar Styles */
-  .navbar-brand i {
-    font-size: 1.5rem;
-    color: #fe424d;
+  /* ── NAVBAR ── */
+  .navbar {
+    height: 66px;
+    background: rgba(255,255,255,0.95) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
-
-  .navbar-brand:hover i {
-    color: #ff5566;
-    transition: color 0.3s ease;
+  .nav-logo-box {
+    width: 34px; height: 34px;
+    background: #fe424d; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; font-size: 15px; flex-shrink: 0;
   }
-
-  /* Search Bar Styles */
-  .search-form {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  .nav-logo-name {
+    font-size: 19px; font-weight: 700;
+    color: #1a1a1a; letter-spacing: -0.3px;
   }
-
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
-    border: 1px solid #ddd;
-    width: 220px;          /* ✅ Fixed width — no more stretching */
+  .nav-search-wrap {
+    display: flex; align-items: center;
+    background: #f0efec; border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50px; padding: 6px 6px 6px 14px; gap: 8px;
+    transition: border-color .2s, box-shadow .2s;
+    flex: 1; max-width: 340px;
   }
-
-  .search-inp:focus {
-    outline: none;
+  .nav-search-wrap:focus-within {
     border-color: #fe424d;
-    box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+    box-shadow: 0 0 0 3px rgba(254,66,77,.12);
+    background: white;
   }
-
+  .nav-search-wrap i { color: #a0a0a0; font-size: 13px; flex-shrink: 0; }
+  .nav-search-wrap input {
+    border: none; background: transparent; outline: none;
+    font-size: 14px; color: #1a1a1a; flex: 1; min-width: 0;
+    font-family: inherit;
+  }
+  .nav-search-wrap input::placeholder { color: #a0a0a0; }
   .btn-search {
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    font-weight: 500;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    background: #fe424d; color: white; border: none;
+    border-radius: 40px; padding: 7px 16px;
+    font-size: 13px; font-weight: 500; font-family: inherit;
+    display: flex; align-items: center; gap: 6px;
+    transition: background .18s; white-space: nowrap; cursor: pointer;
+  }
+  .btn-search:hover { background: #d62f38; color: white; }
+  .btn-nav-add {
+    font-size: 13px; font-weight: 500; color: #1a1a1a;
+    text-decoration: none; padding: 7px 14px; border-radius: 50px;
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: background .15s; white-space: nowrap;
+  }
+  .btn-nav-add:hover { background: #f0efec; color: #1a1a1a; }
+  .btn-login {
+    font-size: 14px; font-weight: 500; color: #1a1a1a;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.18); background: white;
+    padding: 7px 16px; border-radius: 50px;
+    transition: border-color .15s; white-space: nowrap;
+  }
+  .btn-login:hover { border-color: #1a1a1a; color: #1a1a1a; }
+  .btn-signup {
+    font-size: 14px; font-weight: 500; color: white;
+    text-decoration: none; background: #1a1a1a; border: none;
+    padding: 7px 16px; border-radius: 50px;
+    transition: background .15s; white-space: nowrap;
+  }
+  .btn-signup:hover { background: #333; color: white; }
+  .btn-logout {
+    font-size: 14px; font-weight: 500; color: #fe424d;
+    text-decoration: none;
+    border: 1px solid rgba(254,66,77,0.3); background: white;
+    padding: 7px 16px; border-radius: 50px;
+    transition: all .15s; white-space: nowrap;
+  }
+  .btn-logout:hover { background: #fff1f2; border-color: #fe424d; color: #fe424d; }
+  .nav-divider { width: 1px; height: 22px; background: rgba(0,0,0,0.1); }
+
+  /* Mobile dropdown */
+  @media (max-width: 767.98px) {
+    #navbarMain {
+      position: absolute;
+      top: 66px; left: 0; right: 0;
+      background: white;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      padding: 16px;
+      z-index: 999;
+    }
+    #navbarMain .nav-search-wrap { max-width: 100%; margin-bottom: 12px; }
+    #navbarMain .nav-actions { flex-direction: column; align-items: flex-start !important; }
+    #navbarMain .nav-divider { display: none; }
+    #navbarMain .btn-nav-add,
+    #navbarMain .btn-login,
+    #navbarMain .btn-signup,
+    #navbarMain .btn-logout { width: 100%; justify-content: center; }
   }
 
-  .btn-search:hover {
-    background-color: #ff5566;
-    color: #fff;
-  }
-
-  /* Category Filter Bar */
+  /* ── CATEGORY BAR ── */
   .category-bar {
     background-color: #fff;
     border-bottom: 1px solid #e5e5e5;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* hide scrollbar Firefox */
+    scrollbar-width: none;
   }
-
-  .category-bar::-webkit-scrollbar {
-    display: none; /* hide scrollbar Chrome */
-  }
-
-  .category-wrapper {
+  .category-bar::-webkit-scrollbar { display: none; }
+  .category-container {
     display: flex;
     align-items: center;
-    min-width: max-content;
     padding: 0 1rem;
-    gap: 0.25rem;
+    min-width: min-content;
   }
-
   .category-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    background-color: transparent;
-    color: #717171;
-    font-size: 0.78rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.4rem; padding: 0.6rem 1rem;
+    border: 2px solid transparent; border-radius: 20px;
+    background-color: transparent; color: #555;
+    font-size: 0.82rem; font-weight: 500; font-family: inherit;
+    cursor: pointer; transition: all 0.2s ease;
+    white-space: nowrap; flex-shrink: 0;
   }
-
-  .category-btn:hover {
-    border-color: #ddd;
-    color: #222;
-  }
-
-  .category-btn.active {
-    border-color: #222;
-    color: #222;
-  }
-
-  .category-btn i {
-    font-size: 1.4rem;
-  }
-
-  /* Tax Toggle — pinned to right, separated by border */
+  .category-btn:hover { border-color: #fe424d; color: #fe424d; }
+  .category-btn.active { border-color: #fe424d; color: #fe424d; }
+  .category-btn i { font-size: 1.4rem; }
   .tax-toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem 0.5rem 1.25rem;
-    border-left: 1px solid #e5e5e5;
-    flex-shrink: 0;
-    background: #fff;
-    position: sticky;
-    right: 0;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1rem; border-left: 1px solid #e5e5e5;
+    flex-shrink: 0; margin-left: auto;
   }
-
   .tax-toggle-container label {
-    margin: 0;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    color: #222;
+    margin: 0; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+    white-space: nowrap; color: #333;
   }
+  .toggle-checkbox { width: 2rem; height: 1rem; cursor: pointer; }
 
-  /* Responsive */
   @media (max-width: 768px) {
-    .search-form {
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-
-    .search-inp {
-      width: 100%;        /* full width only inside collapsed menu */
-      flex: 1;
-    }
-
-    .btn-search span {
-      display: inline;
-    }
+    .category-btn { padding: 0.5rem 0.75rem; font-size: 0.75rem; }
+    .category-btn i { font-size: 1.2rem; }
+    .tax-toggle-container { padding: 0.5rem 0.75rem; }
+    .tax-toggle-container label { font-size: 0.75rem; }
   }
-
   @media (max-width: 576px) {
-    .btn-search span {
-      display: none;   /* icon only on very small screens */
-    }
+    .btn-search span { display: none; }
   }
 </style>
 
-<!-- ✅ Main Navbar -->
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-solid fa-compass"></i>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar navbar-expand-md border-bottom sticky-top">
+  <div class="container-fluid gap-3">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none p-0" href="/listings">
+      <span class="nav-logo-box"><i class="fa-solid fa-compass"></i></span>
+      <span class="nav-logo-name">wandr</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Hamburger (mobile only) -->
+    <button class="navbar-toggler border-0 ms-auto shadow-none" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMain"
+      aria-controls="navbarMain"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- Explore link -->
-      <div class="navbar-nav flex-grow-1">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
+    <!-- Collapsible section -->
+    <div class="collapse navbar-collapse" id="navbarMain">
 
-      <!-- ✅ FIX: changed from navbar-nav to d-flex so search stays inline -->
-      <form class="d-flex search-form me-3" action="/listings" method="GET">
-        <input class="search-inp form-control" type="search"
-          name="search" placeholder="Search destinations..."
-          aria-label="Search Destinations">
-        <button class="btn btn-search" type="submit">
-          <i class="fa-solid fa-magnifying-glass"></i>
+      <!-- Explore link (desktop only) -->
+      <a class="nav-link me-1 d-none d-md-block"
+        style="font-size:14px;font-weight:500;color:#1a1a1a;white-space:nowrap"
+        href="/listings">Explore</a>
+
+      <!-- Search bar -->
+      <form class="nav-search-wrap me-auto" action="/listings" method="GET">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" name="q" placeholder="Search destinations…" aria-label="Search">
+        <button class="btn-search" type="submit">
+          <i class="fa-solid fa-magnifying-glass" style="font-size:12px"></i>
           <span>Search</span>
         </button>
       </form>
 
-      <!-- User Links -->
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings/new">Add Listing</a>
-        <% if(!currUser) { %>
-          <a class="nav-link" href="/signup"><b>SignUp</b></a>
-          <a class="nav-link" href="/login"><b>Login</b></a>
+      <!-- Right-side actions -->
+      <div class="d-flex align-items-center gap-2 nav-actions flex-wrap">
+
+        <a class="btn-nav-add" href="/listings/new">
+          <i class="fa-solid fa-plus" style="font-size:11px"></i> Add listing
+        </a>
+
+        <% if (!currUser) { %>
+          <span class="nav-divider d-none d-md-inline-block"></span>
+          <a class="btn-login" href="/login">Log in</a>
+          <a class="btn-signup" href="/signup">Sign up</a>
+        <% } else { %>
+          <span class="nav-divider d-none d-md-inline-block"></span>
+          <a class="btn-logout" href="/logout">Log out</a>
         <% } %>
-        <% if(currUser) { %>
-          <a class="nav-link" href="/logout">Logout</a>
-        <% } %>
+
       </div>
     </div>
+
   </div>
 </nav>
 
-<!-- ✅ Category Filter Bar — outside navbar, so it never overlaps -->
+
+<!-- ── CATEGORY BAR ── -->
+<!-- NOTE: This is the ONLY place the category bar should exist.
+     Remove any other <div class="category-bar"> from boilerplate.ejs or index.ejs -->
 <div class="category-bar">
-  <div class="d-flex align-items-center">
-    <div class="category-wrapper flex-grow-1">
-      <button class="category-btn" data-category="trending">
-        <i class="fa-solid fa-fire"></i>
-        <span>Trending</span>
+  <div class="container-fluid px-0">
+    <div class="category-container">
+
+      <button class="category-btn active" data-category="trending">
+        <i class="fa-solid fa-fire"></i><span>Trending</span>
       </button>
       <button class="category-btn" data-category="rooms">
-        <i class="fa-solid fa-door-open"></i>
-        <span>Rooms</span>
+        <i class="fa-solid fa-door-open"></i><span>Rooms</span>
       </button>
       <button class="category-btn" data-category="iconic">
-        <i class="fa-solid fa-city"></i>
-        <span>Iconic Cities</span>
+        <i class="fa-solid fa-landmark"></i><span>Iconic Cities</span>
       </button>
       <button class="category-btn" data-category="mountains">
-        <i class="fa-solid fa-mountain"></i>
-        <span>Mountains</span>
+        <i class="fa-solid fa-mountain"></i><span>Mountains</span>
       </button>
       <button class="category-btn" data-category="pools">
-        <i class="fa-solid fa-swimming-pool"></i>
-        <span>Amazing Pools</span>
+        <i class="fa-solid fa-water"></i><span>Amazing Pools</span>
       </button>
       <button class="category-btn" data-category="castles">
-        <i class="fa-solid fa-chess-rook"></i>
-        <span>Castles</span>
+        <i class="fa-solid fa-chess-rook"></i><span>Castles</span>
       </button>
       <button class="category-btn" data-category="farms">
-        <i class="fa-solid fa-tractor"></i>
-        <span>Farms</span>
+        <i class="fa-solid fa-tractor"></i><span>Farms</span>
       </button>
       <button class="category-btn" data-category="camping">
-        <i class="fa-solid fa-campground"></i>
-        <span>Camping</span>
+        <i class="fa-solid fa-campground"></i><span>Camping</span>
       </button>
       <button class="category-btn" data-category="arctic">
-        <i class="fa-solid fa-snowflake"></i>
-        <span>Arctic</span>
+        <i class="fa-solid fa-snowflake"></i><span>Arctic</span>
       </button>
-      <!-- ✅ FIX: fa-island doesn't exist — replaced with fa-umbrella-beach -->
       <button class="category-btn" data-category="island">
-        <i class="fa-solid fa-umbrella-beach"></i>
-        <span>Island</span>
+        <i class="fa-solid fa-umbrella-beach"></i><span>Island</span>
       </button>
-    </div>
 
-    <!-- Tax Toggle pinned to right -->
-    <div class="tax-toggle-container">
-      <label for="taxToggle">Display total after tax</label>
-      <div class="form-check form-switch mb-0">
-        <input class="form-check-input" type="checkbox" id="taxToggle" role="switch">
+      <!-- Tax toggle pinned to right -->
+      <div class="tax-toggle-container">
+        <label for="taxToggle">Show total with taxes</label>
+        <input type="checkbox" id="taxToggle" class="toggle-checkbox">
       </div>
+
     </div>
   </div>
 </div>
+
 
 <script>
   // Category active state
@@ -256,25 +262,12 @@
     btn.addEventListener('click', function () {
       document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
-      const category = this.dataset.category;
-      // Filter listings — update URL param and reload or use AJAX
-      const url = new URL(window.location.href);
-      url.searchParams.set('category', category);
-      window.location.href = url.toString();
+      console.log('Filter by:', this.dataset.category);
     });
   });
-
-  // Mark active category on page load from URL
-  const params = new URLSearchParams(window.location.search);
-  const activeCategory = params.get('category');
-  if (activeCategory) {
-    const activeBtn = document.querySelector(`.category-btn[data-category="${activeCategory}"]`);
-    if (activeBtn) activeBtn.classList.add('active');
-  }
 
   // Tax toggle
   document.getElementById('taxToggle').addEventListener('change', function () {
     console.log('Show tax:', this.checked);
-    // Add your price display logic here
   });
 </script>
