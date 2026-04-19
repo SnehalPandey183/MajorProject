@@ -1,5 +1,4 @@
 <style>
-/* ===== NAVBAR ===== */
 .navbar {
   height: 66px;
   background: rgba(255,255,255,0.95);
@@ -24,7 +23,6 @@
   font-size: 18px;
 }
 
-/* Search */
 .nav-search-wrap {
   display: flex;
   align-items: center;
@@ -51,7 +49,6 @@
   border: none;
 }
 
-/* Buttons */
 .btn-nav-add,
 .btn-login,
 .btn-signup,
@@ -76,10 +73,10 @@
   color: #fe424d;
 }
 
-/* ===== MOBILE FIX (IMPORTANT) ===== */
+/* MOBILE FIX */
 @media (max-width: 767px) {
   #navbarMain {
-    position: static;   /* KEY FIX */
+    position: static;
     width: 100%;
     background: white;
     padding: 15px;
@@ -88,7 +85,6 @@
 
   .nav-actions {
     flex-direction: column;
-    align-items: stretch;
     gap: 10px;
     margin-top: 10px;
   }
@@ -106,51 +102,8 @@
     text-align: center;
   }
 }
-
-/* ===== CATEGORY BAR ===== */
-.category-bar {
-  position: sticky;
-  top: 66px;
-  z-index: 998;
-  background: white;
-  border-bottom: 1px solid #eee;
-  overflow-x: auto;
-}
-
-.category-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-}
-
-.category-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-  color: #555;
-  border: none;
-  background: none;
-  cursor: pointer;
-  min-width: 70px;
-}
-
-.category-btn i {
-  font-size: 18px;
-}
-
-.category-btn.active {
-  color: #fe424d;
-}
-
-/* ===== PAGE SPACING ===== */
-main {
-  margin-top: 10px;
-}
 </style>
 
-<!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
 
@@ -159,7 +112,7 @@ main {
       <div class="nav-logo-box">
         <i class="fa-solid fa-compass"></i>
       </div>
-      <span class="nav-logo-name">wandr</span>
+      <span class="nav-logo-name">WanderLust</span>
     </a>
 
     <!-- Toggle -->
@@ -175,7 +128,7 @@ main {
       <!-- Search -->
       <form class="nav-search-wrap me-auto" action="/listings">
         <i class="fa fa-search"></i>
-        <input type="text" placeholder="Search destinations...">
+        <input type="text" name="q" placeholder="Search destinations...">
         <button class="btn-search">Search</button>
       </form>
 
@@ -194,29 +147,3 @@ main {
     </div>
   </div>
 </nav>
-
-<!-- ===== CATEGORY BAR (ONLY ONCE) ===== -->
-<div class="category-bar">
-  <div class="category-container">
-
-    <button class="category-btn active"><i class="fa fa-fire"></i>Trending</button>
-    <button class="category-btn"><i class="fa fa-bed"></i>Rooms</button>
-    <button class="category-btn"><i class="fa fa-city"></i>Cities</button>
-    <button class="category-btn"><i class="fa fa-mountain"></i>Mountains</button>
-    <button class="category-btn"><i class="fa fa-water"></i>Pools</button>
-    <button class="category-btn"><i class="fa fa-chess-rook"></i>Castles</button>
-    <button class="category-btn"><i class="fa fa-tractor"></i>Farms</button>
-    <button class="category-btn"><i class="fa fa-campground"></i>Camping</button>
-
-  </div>
-</div>
-
-<!-- ===== SCRIPT ===== -->
-<script>
-document.querySelectorAll(".category-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
-</script>
