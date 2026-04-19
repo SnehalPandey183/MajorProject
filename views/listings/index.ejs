@@ -136,18 +136,19 @@
 
 <style>
 
-/* ===== CATEGORY BAR ===== */
+/* ===== CATEGORY BAR (FINAL FIX) ===== */
 .category-bar {
-  position: sticky;
-  top: 66px; /* mobile navbar height */
-  z-index: 50;
+  position: relative;   
+  top: 0;
+
   background: #fff;
   border-bottom: 1px solid #eee;
 
   padding: 12px 0;
+  margin-top: 10px;    
   margin-bottom: 16px;
 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   overflow-x: auto;
 }
 
@@ -155,12 +156,10 @@
   display: none;
 }
 
-/* DESKTOP FIX (IMPORTANT) */
-@media (min-width: 768px) {
-  .category-bar {
-    top: 100px; /* adjust for larger navbar */
-  }
+.category-bar::-webkit-scrollbar {
+  display: none;
 }
+
 
 /* ===== CATEGORY CONTAINER ===== */
 .category-container {
