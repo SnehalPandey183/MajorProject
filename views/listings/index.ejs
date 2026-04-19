@@ -134,19 +134,25 @@
 
 <% layout("/layouts/boilerplate") %>
 
-<style>
+/* ===== PAGE BASE ===== */
+body {
+  background-color: #fafafa;
+}
 
-/* ===== CATEGORY BAR (FINAL FIX) ===== */
+main {
+  margin-top: 10px;
+}
+
+/* ===== CATEGORY BAR ===== */
 .category-bar {
-  position: relative;   
-  top: 0;
+  position: relative;   /* 🔥 NO sticky */
 
   background: #fff;
   border-bottom: 1px solid #eee;
 
   padding: 12px 0;
-  margin-top: 10px;    
-  margin-bottom: 16px;
+  margin-top: 12px;     /* space from navbar */
+  margin-bottom: 18px;
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   overflow-x: auto;
@@ -155,11 +161,6 @@
 .category-bar::-webkit-scrollbar {
   display: none;
 }
-
-.category-bar::-webkit-scrollbar {
-  display: none;
-}
-
 
 /* ===== CATEGORY CONTAINER ===== */
 .category-container {
@@ -214,21 +215,22 @@
   border-left: 1px solid #eee;
 }
 
-/* ===== LISTINGS ===== */
+/* ===== LISTINGS GRID ===== */
 .listing-row {
   margin-top: 20px;
 }
 
-/* CARD STYLE */
+/* ===== CARD STYLE ===== */
 .listing-card {
   border: none;
   border-radius: 14px;
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .listing-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 .listing-card img {
@@ -236,7 +238,7 @@
   object-fit: cover;
 }
 
-/* TEXT */
+/* ===== TEXT ===== */
 .card-text {
   font-size: 14px;
   color: #333;
@@ -246,13 +248,6 @@
   color: #777;
   font-size: 13px;
 }
-
-/* BODY BACKGROUND */
-body {
-  background-color: #fafafa;
-}
-
-</style>
 
 
 <!-- ===== CATEGORY BAR ===== -->
