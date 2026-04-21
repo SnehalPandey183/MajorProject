@@ -20,11 +20,22 @@ const CATEGORIES = [
 ];
 
 module.exports.index = async(req,res) =>{
-    const { category } = req.query;
+    const { category, q } = req.query;
     let query = {};
     
     if (category && category !== "all") {
         query.category = category;
+    }
+    
+    // Search functionality
+    if (q) {
+        const searchRegex = new RegExp(q, "i"); // Case-insensitive search
+        query.$or = [
+            { title: searchRegex },
+            { description: searchRegex },
+            { location: searchRegex },
+            { country: searchRegex }
+        ];
     }
     
     const allListings = await Listing.find(query);
