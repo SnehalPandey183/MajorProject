@@ -2,6 +2,25 @@ const mongoose = require ("mongoose");
 const reviews = require("./reviews.js");
 const Schema = mongoose.Schema;
 
+// Category enum
+const CATEGORIES = [
+    "Apartment",
+    "House",
+    "Villa",
+    "Cabin",
+    "Beach House",
+    "Mountain Retreat",
+    "Farmhouse",
+    "Studio",
+    "Condo",
+    "Hostel",
+    "Resort",
+    "Hotel",
+    "Cottage",
+    "Boat",
+    "Treehouse"
+];
+
 const listingSchema = new Schema({
     title:{
         type: String,
@@ -12,23 +31,7 @@ const listingSchema = new Schema({
     },
     category:{
         type: String,
-        enum: [
-            "Apartment",
-            "House",
-            "Villa",
-            "Cabin",
-            "Beach House",
-            "Mountain Retreat",
-            "Farmhouse",
-            "Studio",
-            "Condo",
-            "Hostel",
-            "Resort",
-            "Hotel",
-            "Cottage",
-            "Boat",
-            "Treehouse"
-        ],
+        enum: CATEGORIES,
         required: true,
     },
     image:{

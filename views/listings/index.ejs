@@ -183,6 +183,7 @@ main {
   border: none;
   background: none;
   cursor: pointer;
+  text-decoration: none;
 
   color: #666;
   font-size: 12px;
@@ -198,6 +199,7 @@ main {
 .category-btn:hover {
   color: #fe424d;
   transform: translateY(-2px);
+  text-decoration: none;
 }
 
 .category-btn.active {
@@ -255,45 +257,60 @@ main {
 <div class="category-bar">
   <div class="category-container">
 
-    <button class="category-btn active">
+    <a href="/listings" class="category-btn <% if(selectedCategory === 'all') { %>active<% } %>">
       <i class="fa-solid fa-fire"></i>
-      <span>Trending</span>
-    </button>
+      <span>All</span>
+    </a>
 
-    <button class="category-btn">
-      <i class="fa-solid fa-bed"></i>
-      <span>Rooms</span>
-    </button>
+    <a href="/listings?category=Apartment" class="category-btn <% if(selectedCategory === 'Apartment') { %>active<% } %>">
+      <i class="fa-solid fa-building"></i>
+      <span>Apartment</span>
+    </a>
 
-    <button class="category-btn">
-      <i class="fa-solid fa-landmark"></i>
-      <span>Cities</span>
-    </button>
+    <a href="/listings?category=House" class="category-btn <% if(selectedCategory === 'House') { %>active<% } %>">
+      <i class="fa-solid fa-house"></i>
+      <span>House</span>
+    </a>
 
-    <button class="category-btn">
+    <a href="/listings?category=Villa" class="category-btn <% if(selectedCategory === 'Villa') { %>active<% } %>">
+      <i class="fa-solid fa-gopuram"></i>
+      <span>Villa</span>
+    </a>
+
+    <a href="/listings?category=Cabin" class="category-btn <% if(selectedCategory === 'Cabin') { %>active<% } %>">
+      <i class="fa-solid fa-tree"></i>
+      <span>Cabin</span>
+    </a>
+
+    <a href="/listings?category=Beach House" class="category-btn <% if(selectedCategory === 'Beach House') { %>active<% } %>">
+      <i class="fa-solid fa-water"></i>
+      <span>Beach</span>
+    </a>
+
+    <a href="/listings?category=Mountain Retreat" class="category-btn <% if(selectedCategory === 'Mountain Retreat') { %>active<% } %>">
       <i class="fa-solid fa-mountain"></i>
       <span>Mountains</span>
-    </button>
+    </a>
 
-    <button class="category-btn">
-      <i class="fa-solid fa-water"></i>
-      <span>Pools</span>
-    </button>
-
-    <button class="category-btn">
-      <i class="fa-solid fa-chess-rook"></i>
-      <span>Castles</span>
-    </button>
-
-    <button class="category-btn">
+    <a href="/listings?category=Farmhouse" class="category-btn <% if(selectedCategory === 'Farmhouse') { %>active<% } %>">
       <i class="fa-solid fa-tractor"></i>
       <span>Farms</span>
-    </button>
+    </a>
 
-    <button class="category-btn">
-      <i class="fa-solid fa-campground"></i>
-      <span>Camping</span>
-    </button>
+    <a href="/listings?category=Studio" class="category-btn <% if(selectedCategory === 'Studio') { %>active<% } %>">
+      <i class="fa-solid fa-palette"></i>
+      <span>Studio</span>
+    </a>
+
+    <a href="/listings?category=Resort" class="category-btn <% if(selectedCategory === 'Resort') { %>active<% } %>">
+      <i class="fa-solid fa-umbrellas"></i>
+      <span>Resort</span>
+    </a>
+
+    <a href="/listings?category=Boat" class="category-btn <% if(selectedCategory === 'Boat') { %>active<% } %>">
+      <i class="fa-solid fa-sailboat"></i>
+      <span>Boat</span>
+    </a>
 
     <!-- TAX TOGGLE -->
     <div class="tax-toggle">
@@ -341,14 +358,6 @@ main {
 
 
 <script>
-// CATEGORY ACTIVE
-document.querySelectorAll(".category-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
-
 // TAX TOGGLE
 document.getElementById("taxSwitch").addEventListener("change", function () {
   document.querySelectorAll(".tax-info").forEach(el => {

@@ -1,13 +1,38 @@
 const Listing = require("../models/listing");
 
+// Define categories
+const CATEGORIES = [
+    "Apartment",
+    "House",
+    "Villa",
+    "Cabin",
+    "Beach House",
+    "Mountain Retreat",
+    "Farmhouse",
+    "Studio",
+    "Condo",
+    "Hostel",
+    "Resort",
+    "Hotel",
+    "Cottage",
+    "Boat",
+    "Treehouse"
+];
 
 module.exports.index = async(req,res) =>{
-    const allListings = await Listing.find({});
-    res.render("listings/index",{ allListings });
+    const { category } = req.query;
+    let query = {};
+    
+    if (category && category !== "all") {
+        query.category = category;
+    }
+    
+    const allListings = await Listing.find(query);
+    res.render("listings/index",{ allListings, selectedCategory: category || "all", categories: CATEGORIES });
 };
 
 module.exports.renderNewForm = (req,res) =>{
-    res.render("listings/new.ejs");
+    res.render("listings/new.ejs", { categories: CATEGORIES });
 }
 
 
@@ -42,7 +67,7 @@ module.exports.renderEditForm = async(req,res) =>{
     const listing = await Listing.findById(id);
     let originalImageUrl = listing.image.url;
     originalImageUrl = originalImageUrl.replace("/upload","/upload/h_300,w_250");
-    res.render("listings/edit", { listing, originalImageUrl });
+    res.render("listings/edit", { listing, originalImageUrl, categories: CATEGORIES });
 }
 
 
