@@ -17,3 +17,29 @@
     }, false)
   })
 })()
+
+// Auto-dismiss flash alerts after 5 seconds
+document.addEventListener('DOMContentLoaded', function() {
+  const alerts = document.querySelectorAll('.alert-container');
+  
+  alerts.forEach(alert => {
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+      const closeBtn = alert.querySelector('.alert-close');
+      if (closeBtn) {
+        closeBtn.click();
+      }
+    }, 5000);
+    
+    // Remove alert when close button is clicked
+    const closeBtn = alert.querySelector('.alert-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        alert.classList.add('hide');
+        setTimeout(() => {
+          alert.remove();
+        }, 400);
+      });
+    }
+  });
+});

@@ -11,6 +11,29 @@
             <div class="invalid-feedback">Title should be valid</div>            
         </div>
         <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-control" required>
+                <option value="">-- Select a Category --</option>
+                <option value="Apartment" <% if(listing.category === "Apartment") { %>selected<% } %>>Apartment</option>
+                <option value="House" <% if(listing.category === "House") { %>selected<% } %>>House</option>
+                <option value="Villa" <% if(listing.category === "Villa") { %>selected<% } %>>Villa</option>
+                <option value="Cabin" <% if(listing.category === "Cabin") { %>selected<% } %>>Cabin</option>
+                <option value="Beach House" <% if(listing.category === "Beach House") { %>selected<% } %>>Beach House</option>
+                <option value="Mountain Retreat" <% if(listing.category === "Mountain Retreat") { %>selected<% } %>>Mountain Retreat</option>
+                <option value="Farmhouse" <% if(listing.category === "Farmhouse") { %>selected<% } %>>Farmhouse</option>
+                <option value="Studio" <% if(listing.category === "Studio") { %>selected<% } %>>Studio</option>
+                <option value="Condo" <% if(listing.category === "Condo") { %>selected<% } %>>Condo</option>
+                <option value="Hostel" <% if(listing.category === "Hostel") { %>selected<% } %>>Hostel</option>
+                <option value="Resort" <% if(listing.category === "Resort") { %>selected<% } %>>Resort</option>
+                <option value="Hotel" <% if(listing.category === "Hotel") { %>selected<% } %>>Hotel</option>
+                <option value="Cottage" <% if(listing.category === "Cottage") { %>selected<% } %>>Cottage</option>
+                <option value="Boat" <% if(listing.category === "Boat") { %>selected<% } %>>Boat</option>
+                <option value="Treehouse" <% if(listing.category === "Treehouse") { %>selected<% } %>>Treehouse</option>
+            </select>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Please select a category</div>
+        </div>
+        <div class="mb-3">
         <lable for="description" class="form-label">Description</lable>
         <textarea name="listing[description]" value="<%=listing.description%>" class="form-control" required></textarea>
             <div class="valid-feedback">Looks Good!</div>

@@ -10,6 +10,27 @@ const listingSchema = new Schema({
     description:{
         type: String,
     },
+    category:{
+        type: String,
+        enum: [
+            "Apartment",
+            "House",
+            "Villa",
+            "Cabin",
+            "Beach House",
+            "Mountain Retreat",
+            "Farmhouse",
+            "Studio",
+            "Condo",
+            "Hostel",
+            "Resort",
+            "Hotel",
+            "Cottage",
+            "Boat",
+            "Treehouse"
+        ],
+        required: true,
+    },
     image:{
         url: String,
         filename: String,

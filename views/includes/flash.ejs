@@ -1,14 +1,29 @@
 <% if(success && success.length) { %>
-   <div class="alert alert-success alert-dissmissible fade show col-6 offset-3" role="alert">
-       <%= success %>
-       <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" arial-label="close"></button>
+   <div class="alert-container alert-success-container" role="alert">
+       <div class="alert-content">
+           <i class="fa-solid fa-circle-check alert-icon"></i>
+           <div class="alert-text">
+               <strong>Success!</strong>
+               <p><%= success %></p>
+           </div>
+       </div>
+       <button type="button" class="alert-close" data-bs-dismiss="alert" aria-label="close">
+           <i class="fa-solid fa-xmark"></i>
+       </button>
    </div>
 <% } %>
 
-
 <% if(error && error.length) { %>
-   <div class="alert alert-danger alert-dissmissible fade show col-6 offset-3" role="alert">
-       <%= error %>
-       <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" arial-label="close"></button>
+   <div class="alert-container alert-error-container" role="alert">
+       <div class="alert-content">
+           <i class="fa-solid fa-circle-xmark alert-icon"></i>
+           <div class="alert-text">
+               <strong>Error!</strong>
+               <p><%= error %></p>
+           </div>
+       </div>
+       <button type="button" class="alert-close" data-bs-dismiss="alert" aria-label="close">
+           <i class="fa-solid fa-xmark"></i>
+       </button>
    </div>
 <% } %>
