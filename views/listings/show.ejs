@@ -118,6 +118,31 @@
     font-size: 14px;
     color: #777;
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .review-rating .starability-result {
+    margin: 0 !important;
+  }
+
+  .rating-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 4px;
+  }
+
+  .rating-text {
+    font-size: 13px;
+    color: #999;
+    font-weight: 600;
   }
 
   .review-comment {
@@ -131,12 +156,15 @@
     background: #f0f0f0;
     color: #333;
     border: 1px solid #ddd;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
 
   .review-delete-btn:hover {
@@ -394,10 +422,14 @@
                 <div class="review-header">
                   <div class="review-author"><%= review.author.username %></div>
                 </div>
-                <p class="review-rating starability-result" data-rating="<%= review.rating %>">
-                  <strong>Rating:</strong> <%= review.rating %>/5
-                </p>
+                
+                <div class="rating-display">
+                  <div class="starability-result" data-rating="<%= review.rating %>" style="font-size: 18px;"></div>
+                  <span class="rating-text"><%= review.rating %>/5</span>
+                </div>
+                
                 <p class="review-comment"><%= review.comment %></p>                                         
+                
                 <form method="POST" action="/listings/<%= listing._id%>/reviews/<%= review._id%>?_method=DELETE" style="display: inline;">
                     <button type="submit" class="review-delete-btn">
                       <i class="fa-solid fa-trash"></i> Delete
