@@ -7,15 +7,24 @@
     gap: 12px;
     background: linear-gradient(135deg, #fe424d 0%, #ff6b6b 100%);
     color: white;
-    padding: 12px 18px;
+    padding: 12px 18px 12px 18px;
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
     margin: 10px 0;
+    position: relative;
   }
 
   .category-display i {
     font-size: 18px;
+  }
+
+  .category-display::after {
+    content: '↓';
+    position: absolute;
+    right: 10px;
+    font-size: 14px;
+    opacity: 0.9;
   }
 
   /* ===== REVIEW SECTION ===== */
@@ -213,15 +222,14 @@
   /* ===== ACTION BUTTONS ===== */
   .action-buttons-container {
     display: flex;
+    flex-direction: column;
     gap: 12px;
     margin-top: 24px;
     margin-bottom: 24px;
-    flex-wrap: wrap;
   }
 
   .action-btn {
-    flex: 1;
-    min-width: 140px;
+    width: 100%;
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
@@ -260,13 +268,9 @@
   }
 
   @media (max-width: 576px) {
-    .action-buttons-container {
-      flex-direction: column;
-    }
-
     .action-btn {
-      min-width: 100%;
-      width: 100%;
+      font-size: 14px;
+      padding: 10px 16px;
     }
   }
 </style>
