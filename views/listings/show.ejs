@@ -1,4 +1,24 @@
 <%layout("/layouts/boilerplate")%>
+
+<style>
+  .category-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #fe424d 0%, #ff6b6b 100%);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .category-display i {
+    font-size: 18px;
+  }
+</style>
+
 <div class="row mt-3">
     <div class="col-8 offset-2">
       <h3><%= listing.title%></h3>
@@ -15,7 +35,63 @@
     </p>
 
     <p class="card-text">
-      <strong>Category:</strong> <span class="badge bg-primary"><%= listing.category %></span>
+      <strong>Category:</strong>
+      <div class="category-display">
+        <% 
+          let categoryIcon = '';
+          switch(listing.category) {
+            case 'Apartment':
+              categoryIcon = 'fa-building';
+              break;
+            case 'House':
+              categoryIcon = 'fa-house';
+              break;
+            case 'Villa':
+              categoryIcon = 'fa-gopuram';
+              break;
+            case 'Cabin':
+              categoryIcon = 'fa-tree';
+              break;
+            case 'Beach House':
+              categoryIcon = 'fa-water';
+              break;
+            case 'Mountain Retreat':
+              categoryIcon = 'fa-mountain';
+              break;
+            case 'Farmhouse':
+              categoryIcon = 'fa-tractor';
+              break;
+            case 'Studio':
+              categoryIcon = 'fa-palette';
+              break;
+            case 'Condo':
+              categoryIcon = 'fa-building';
+              break;
+            case 'Hostel':
+              categoryIcon = 'fa-bed';
+              break;
+            case 'Resort':
+              categoryIcon = 'fa-umbrellas';
+              break;
+            case 'Hotel':
+              categoryIcon = 'fa-hotel';
+              break;
+            case 'Cottage':
+              categoryIcon = 'fa-home';
+              break;
+            case 'Boat':
+              categoryIcon = 'fa-sailboat';
+              break;
+            case 'Treehouse':
+              categoryIcon = 'fa-tree';
+              break;
+            default:
+              categoryIcon = 'fa-house';
+          }
+        %>
+        <i class="fa-solid <%= categoryIcon %>"></i>
+        <%= listing.category %>
+      </div>
     </p>
 
     <p class="card-text">
